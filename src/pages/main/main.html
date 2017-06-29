@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-buttons>
+      <button ion-button icon-only style="float:right" (click)="clickForAll()" *ngIf="allClick != true">
+        <ion-icon  ios="ios-list" md="md-list"></ion-icon>
+      </button>
+      <div *ngIf="allClick == true">
+        <button ion-button icon-only style="float:right" (click)="clickForSearch()">
+          <ion-icon name="search" *ngIf="searchKey === false"></ion-icon>
+          <ion-searchbar color="'danger" (ionInput)="getAllItems($event)" *ngIf="searchKey === true">CLOSE</ion-searchbar>
+        </button>
+        <button ion-button icon-only style="float:right" (click)="clickForCard()">
+          <ion-icon  name="md-apps"></ion-icon>
+        </button>
+      </div>
+    </ion-buttons>
+    <ion-title *ngIf="searchKey === false">
+      Irish Calling
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar *ngIf="allClick == true" backgriund-color="danger" (ionInput)="getAllItems($event)"></ion-searchbar>
+  <ion-searchbar *ngIf="allClick != true" backgriund-color="danger" (ionInput)="getItems($event)"></ion-searchbar>
+  <div *ngIf="allClick == true">
+    <ion-list *ngFor="let word of words">
+      <ion-card *ngFor="let card of word.card">
+        <ion-row>
+          <ion-col>
+            <h2>{{card.word}}</h2>
+            <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
+              <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
+            </audio-track>
+          </ion-col>
+          <ion-col ion-text color="danger" text-right>
+            {{card.irish}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3 ion-text color="secondary" text-right >{{card.other}}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-list>
+  </div>
+  <div *ngIf="allClick != true">
+    <ion-card *ngFor="let card of indexWords" style="margin-bottom: 30px;min-height:70px">
+      <ion-row>
+        <ion-col>
+          <h2>{{card.word}}</h2>
+          <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
+            <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
+          </audio-track>
+        </ion-col>
+        <ion-col ion-text color="danger" text-right>
+          {{card.irish}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h3 ion-text color="secondary" text-right >{{card.other}}</h3>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
+<ion-footer *ngIf="allClick != true">
+  <ion-toolbar color="danger">
+    <ion-buttons>
+      <button ion-button large icon-only (click)="cardDec()">
+        <ion-icon  name="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
+      </button>
+     <button style="margin-left:25%;color:red">{{indexCard}}</button>
+      <button ion-button color="light" outline (click)="doPrompt(cardNum)" style="margin-left:7%">Jump TO</button>
+      <button ion-button large icon-only  style="float: right" large (click)="cardIncr()">
+        <ion-icon  name="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+
+
