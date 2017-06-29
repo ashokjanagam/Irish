@@ -1,14 +1,15 @@
 <ion-header>
-  <ion-navbar color="danger">
+  <ion-navbar color="danger" hideBackButton>
     <ion-buttons>
       <button ion-button icon-only style="float:right" (click)="clickForAll()" *ngIf="allClick != true">
         <ion-icon  ios="ios-list" md="md-list"></ion-icon>
       </button>
       <div *ngIf="allClick == true">
-        <button ion-button icon-only style="float:right" (click)="clickForSearch()">
+        <div ion-button icon-only style="float:right" (click)="clickForSearch()">
           <ion-icon name="search" *ngIf="searchKey === false"></ion-icon>
-          <ion-searchbar color="'danger" (ionInput)="getAllItems($event)" *ngIf="searchKey === true">CLOSE</ion-searchbar>
-        </button>
+         <!--  <ion-searchbar color="'danger" (ionInput)="getAllItems($event)" >CLOSE</ion-searchbar> -->
+         <ion-searchbar *ngIf="searchKey === true" backgriund-color="danger" (ionInput)="getAllItems($event)"></ion-searchbar>
+        </div>
         <button ion-button icon-only style="float:right" (click)="clickForCard()">
           <ion-icon  name="md-apps"></ion-icon>
         </button>
@@ -21,7 +22,6 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar *ngIf="allClick == true" backgriund-color="danger" (ionInput)="getAllItems($event)"></ion-searchbar>
   <ion-searchbar *ngIf="allClick != true" backgriund-color="danger" (ionInput)="getItems($event)"></ion-searchbar>
   <div *ngIf="allClick == true">
     <ion-list *ngFor="let word of words">
