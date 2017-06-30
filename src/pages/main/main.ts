@@ -20,6 +20,8 @@ export class MainPage {
   allClick:boolean = false;
   indexCard:number = 0;
   searchKey:boolean = false;
+  isBackIndex:boolean = false;
+  isFrontIndex:boolean = true;
   allTracks: any[];
   selectedTrack = 0;
 
@@ -53,16 +55,34 @@ export class MainPage {
     this.allClick = false;
   }
   cardIncr(){
+
     if(this.indexCard < this.words.length){
       this.indexCard ++;
       this.indexWords = this.words[this.indexCard].card;
     }else {
       alert("pliz")
     }
+    this.setBackAndFrontIndex();
+  }
+
+  private setBackAndFrontIndex() {
+    if (this.indexCard > 0) {
+      this.isBackIndex = true;
+    } else {
+      this.isBackIndex = false;
+    }
+
+    if (this.indexCard < 47) {
+      this.isFrontIndex = true;
+    } else {
+      this.isFrontIndex = false;
+    }
   }
   cardDec(){
     this.indexCard --;
     this.indexWords = this.words[this.indexCard].card;
+
+    this.setBackAndFrontIndex();
   }
   doPrompt() {
     let prompt = this.alertCtrl.create({
@@ -86,11 +106,13 @@ export class MainPage {
             console.log('Saved clicked',data.title);
             this.indexCard = data.title;
             this.indexWords = this.words[this.indexCard].card;
+            this.setBackAndFrontIndex();
           }
         }
       ]
     });
     prompt.present();
+
   };
 
   initializeItems(){

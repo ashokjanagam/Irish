@@ -6,13 +6,18 @@
       </button>
       <div *ngIf="allClick == true">
         <div ion-button icon-only style="float:right" (click)="clickForSearch()">
-          <ion-icon name="search" *ngIf="searchKey === false"></ion-icon>
+          <ion-icon name="search" *ngIf="searchKey === false">
+
+          </ion-icon>
          <!--  <ion-searchbar color="'danger" (ionInput)="getAllItems($event)" >CLOSE</ion-searchbar> -->
-         <ion-searchbar *ngIf="searchKey === true" backgriund-color="danger" (ionInput)="getAllItems($event)"></ion-searchbar>
+
         </div>
         <button ion-button icon-only style="float:right" (click)="clickForCard()">
           <ion-icon  name="md-apps"></ion-icon>
         </button>
+        <ion-searchbar *ngIf="searchKey === true" backgriund-color="danger" (ionInput)="getAllItems($event)" (ionClear)="onCancel($event)" >
+
+        </ion-searchbar>
       </div>
     </ion-buttons>
     <ion-title *ngIf="searchKey === false">
@@ -69,12 +74,12 @@
 <ion-footer *ngIf="allClick != true">
   <ion-toolbar color="danger">
     <ion-buttons>
-      <button ion-button large icon-only (click)="cardDec()" [disabled]="indexCard === 0">
+      <button ion-button large icon-only (click)="cardDec()" [disabled]="!isBackIndex">
         <ion-icon  name="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
       </button>
      <button style="margin-left:25%;color:red">{{indexCard}}</button>
       <button ion-button color="light" outline (click)="doPrompt(cardNum)" style="margin-left:7%">Jump TO</button>
-      <button ion-button large icon-only  style="float: right" large (click)="cardIncr()" [disabled]="indexCard === 47">
+      <button ion-button large icon-only  style="float: right" large (click)="cardIncr()" [disabled]="!isFrontIndex">
         <ion-icon  name="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
       </button>
     </ion-buttons>
