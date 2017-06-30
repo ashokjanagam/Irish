@@ -1,25 +1,29 @@
 <ion-content>
-  <ion-navbar color="danger">
-    <ion-title>
+  <ion-navbar>
+    <ion-title class="intro-title">
       Introduction
     </ion-title>
   </ion-navbar>
   <div>
     <h2>Introduction:</h2>
-    <p style="font-size: 23px;margin-left: 10px; color:#8E8E8E;">
+    <p style="font-size: 20px;margin-left: 10px; color:#8E8E8E;">
       Bleed across screen: Tones are key to Mandarin. Coloured tonal sounds makes it easier:
     </p>
   </div>
   <div>
     <h2>Reveal each line</h2>
-    <div style="display: grid;float: right">
-      <h3 style="float:right;color:red">Learn Irish</h3>
-      <h3 style="float:right;color:cornflowerblue">Learn Irish</h3>
-    </div>
+    <ul class="Intro-list">
+      <li class="Intro-list red">English</li><br>
+      <li class="Intro-list blue">Irish Code</li><br>
+      <li class="Intro-list green">Irish Word</li><br>
+      <li class="Intro-list lightRed">Irish  Audio</li>
+      <li class="Intro-list skipButtion">
+        <ion-buttons>
+          <button ion-button class="button-dec" (click)="load()">Skip >></button>
+        </ion-buttons>
+      </li>
+    </ul>
+
   </div>
-  <div>
-    <ion-buttons>
-      <button ion-button color="danger"  (click)="load()" style="float:right;margin-top:50%" >Skip >></button>
-    </ion-buttons>
-  </div>
+
 </ion-content>

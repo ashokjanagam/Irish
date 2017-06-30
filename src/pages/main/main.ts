@@ -70,7 +70,7 @@ export class MainPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Card Number(0-149)'
+          placeholder: 'Card Number(0-47)'
         },
       ],
       buttons: [
@@ -118,8 +118,8 @@ export class MainPage {
         card: [
           {word: "How much?", irish: "Cé mhéad?", other: "kay vade", src:"assets/audio/3.1.mp3"},
           {word: "Please", irish: "Le do thoil", other: "leh duh hull", src:"assets/audio/3.2.mp3"},
-          {word: "Thank you", irish: "Go raibh maith agat", other: "gu ro mah ag-ut", src:"assets/audio/3.4.mp3"},
-          {word: "Excuse me", irish: "Gabh mo leithscéal", other: "go ma lesh-cale",src:"assets/audio/3.5.mp3"}
+          {word: "Thank you", irish: "Go raibh maith agat", other: "gu ro mah ag-ut", src:"assets/audio/3.3.mp3"},
+          {word: "Excuse me", irish: "Gabh mo leithscéal", other: "go ma lesh-cale",src:"assets/audio/3.4.mp3"}
         ]
       },
 
@@ -153,8 +153,8 @@ export class MainPage {
           {word:"6",irish:"Sé",other:"Shay", src:"assets/audio/6.6.mp3"},
           {word:"7",irish:"Seacht",other:"Seacht", src:"assets/audio/6.7.mp3"},
           {word:"8",irish:"Ocht",other:"ucht", src:"assets/audio/6.8.mp3"},
-          {word:"9",irish:"Naol",other:"nee", src:"assets/audio/6.10.mp3"},
-          {word:"10",irish:"Deich",other:"je", src:"assets/audio/6.11.mp3"},
+          {word:"9",irish:"Naol",other:"nee", src:"assets/audio/6.9.mp3"},
+          {word:"10",irish:"Deich",other:"je", src:"assets/audio/6.10.mp3"},
         ]},
 
       {id:7,
@@ -332,11 +332,11 @@ export class MainPage {
 
       {id:28,
         card:[
-          {word:"Gold",irish:"Ór",other:"or", src:"assets/audio/31.3.mp3"},
+          {word:"Gold",irish:"Ór",other:"or", src:"assets/audio/28.1.mp3"},
           {word:"Silver",irish:"Airgead",other:"are-a-ged", src:"assets/audio/28.2.mp3"},
           {word:"Pearl",irish:"Péarla",other:"pair-la", src:"assets/audio/28.3.mp3"},
           {word:" ",irish:"",other:"shodra", src:"assets/audio/28.4.mp3"},
-          {word:"Jewellery",irish:"Seodra",other:"", src:"assets/audio/28.4.mp3"},
+          {word:"Jewellery",irish:"Seodra",other:"", src:"assets/audio/28.5.mp3"},
         ]},
 
       {id:29,
