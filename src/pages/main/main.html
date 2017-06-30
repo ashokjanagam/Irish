@@ -69,17 +69,14 @@
 <ion-footer *ngIf="allClick != true">
   <ion-toolbar color="danger">
     <ion-buttons>
-      <button ion-button large icon-only (click)="cardDec()">
+      <button ion-button large icon-only (click)="cardDec()" [disabled]="indexCard === 0">
         <ion-icon  name="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
       </button>
      <button style="margin-left:25%;color:red">{{indexCard}}</button>
       <button ion-button color="light" outline (click)="doPrompt(cardNum)" style="margin-left:7%">Jump TO</button>
-      <button ion-button large icon-only  style="float: right" large (click)="cardIncr()">
+      <button ion-button large icon-only  style="float: right" large (click)="cardIncr()" [disabled]="indexCard === 47">
         <ion-icon  name="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
-
-
-
