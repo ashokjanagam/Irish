@@ -56,7 +56,8 @@
         <ion-col>
           <h2>{{card.word}}</h2>
           <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
-            <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
+            <!--<audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>-->
+            <button (click) = "playSelectedTrack(card,indexWords)"></button>
           </audio-track>
         </ion-col>
         <ion-col ion-text color="danger" text-right>

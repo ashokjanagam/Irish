@@ -24,6 +24,9 @@ export class MainPage {
   isFrontIndex:boolean = true;
   allTracks: any[];
   selectedTrack = 0;
+  startIndex:any;
+  nextIndex:any;
+  endIndex:any;
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,private _audioProvider: AudioProvider) {this.initializeItems();}
 
@@ -31,9 +34,13 @@ export class MainPage {
     // get all tracks managed by AudioProvider so we can control playback via the API
     this.allTracks = this._audioProvider.tracks;
   }
-  playSelectedTrack() {
-    // use AudioProvider to control selected track
-    this._audioProvider.play(this.selectedTrack);
+  playSelectedTrack(card,indexWords) {
+ console.log('this._audioProvider.tracks ',card,indexWords.length);
+ this.startIndex = indexWords[0].id;
+ this.endIndex = indexWords[indexWords.length-1].id
+     // use AudioProvider to control selected track
+    this._audioProvider.play(card.id);
+    this.nextIndex = card.id;
   }
 
   pauseSelectedTrack() {
@@ -42,20 +49,30 @@ export class MainPage {
   }
 
   onTrackFinished(track: any) {
+  if(this.nextIndex == this.endIndex) {
+  this.nextIndex = this.startIndex;
+  } else {
+  this.nextIndex++;
+  }
+  this.selectedTrack = this.nextIndex;
+  this._audioProvider.play(this.nextIndex);
     console.log('Track finished', track)
   }
 
   clickForSearch(){
+  this.pauseSelectedTrack();
     this.searchKey = true;
   }
   clickForAll(){
+  this.pauseSelectedTrack();
     this.allClick = true;
   }
   clickForCard(){
+  this.pauseSelectedTrack();
     this.allClick = false;
   }
   cardIncr(){
-
+this.pauseSelectedTrack();
     if(this.indexCard < this.words.length){
       this.indexCard ++;
       this.indexWords = this.words[this.indexCard].card;
@@ -66,6 +83,7 @@ export class MainPage {
   }
 
   private setBackAndFrontIndex() {
+  this.pauseSelectedTrack();
     if (this.indexCard > 0) {
       this.isBackIndex = true;
     } else {
@@ -79,12 +97,14 @@ export class MainPage {
     }
   }
   cardDec(){
+  this.pauseSelectedTrack();
     this.indexCard --;
     this.indexWords = this.words[this.indexCard].card;
 
     this.setBackAndFrontIndex();
   }
   doPrompt() {
+  this.pauseSelectedTrack();
     let prompt = this.alertCtrl.create({
       title: 'Jump To Card',
       inputs: [
@@ -171,12 +191,7 @@ export class MainPage {
           {word:"2",irish:"Do",other:"do", src:"assets/audio/6.2.mp3"},
           {word:"3",irish:"tree",other:"Trí", src:"assets/audio/6.3.mp3"},
           {word:"4",irish:"Ceathair",other:"ca-har", src:"assets/audio/6.4.mp3"},
-          {word:"5",irish:"Cúig",other:"coo-ig", src:"assets/audio/6.5.mp3"},
-          {word:"6",irish:"Sé",other:"Shay", src:"assets/audio/6.6.mp3"},
-          {word:"7",irish:"Seacht",other:"Seacht", src:"assets/audio/6.7.mp3"},
-          {word:"8",irish:"Ocht",other:"ucht", src:"assets/audio/6.8.mp3"},
-          {word:"9",irish:"Naol",other:"nee", src:"assets/audio/6.9.mp3"},
-          {word:"10",irish:"Deich",other:"je", src:"assets/audio/6.10.mp3"},
+          {word:"5",irish:"Cúig",other:"coo-ig", src:"assets/audio/6.5.mp3"}
         ]},
 
       {id:7,
@@ -213,7 +228,7 @@ export class MainPage {
       {
         id: 11,
         card:[
-          {word:"Airport",irish:"Aerfort",other:"er-fort", src:"assets/audio/128.1.mp3"},
+          {word:"Airport",irish:"Aerfort",other:"er-fort", src:"assets/audio/11.1.mp3"},
           {word:"Hospital ",irish:"Ospidéal",other:"us-pid-ale", src:"assets/audio/11.2.mp3"},
           {word:"Toilets",irish:"Leithreas",other:"leh-rus", src:"assets/audio/11.3.mp3"},
           {word:" Door",irish:"Doras",other:"dur-as",src:"assets/audio/11.4.mp3"}
@@ -310,14 +325,10 @@ export class MainPage {
 
       {id: 23,
         card:[
-          {word:"Mondya",irish:"Dé Luain",other:"jay loon", src:"assets/audio/23.1.mp3"},
+          {word:"Monday",irish:"Dé Luain",other:"jay loon", src:"assets/audio/23.1.mp3"},
           {word:"Tuseday",irish:"Dé Máirt",other:"jay mort", src:"assets/audio/23.2.mp3"},
           {word:"Wednesday",irish:"Dé Céadaoin",other:"jay cade-een", src:"assets/audio/23.3.mp3"},
           {word:"Thursday",irish:"Déardaoin",other:"jer-deen", src:"assets/audio/23.4.mp3"},
-          {word:"Friday",irish:"Dé hAoine",other:"jay he-na", src:"assets/audio/23.5.mp3"},
-          {word:"Saturday",irish:"Dé Sathairn",other:"jay sa-har-in", src:"assets/audio/23.6.mp3"},
-          {word:"Sunday",irish:"Dé Domhnaigh",other:"jay do-nee",src:"assets/audio/23.7.mp3"}
-
         ]},
 
       {id:24,
@@ -333,7 +344,6 @@ export class MainPage {
           {word:"Grapes",irish:"Fíonchaora",other:"feen-cwera", src:"assets/audio/25.1.mp3"},
           {word:"Banana",irish:"Banana",other:"ba-na-na", src:"assets/audio/25.2.mp3"},
           {word:"Strawberries",irish:"Sú talún",other:"soo ta-loon", src:"assets/audio/25.3.mp3"},
-          {word:"Pear",irish:"Piorra",other:"pyurra", src:"assets/audio/25.4.mp3"},
         ]},
 
       {id:26,
@@ -357,8 +367,7 @@ export class MainPage {
           {word:"Gold",irish:"Ór",other:"or", src:"assets/audio/28.1.mp3"},
           {word:"Silver",irish:"Airgead",other:"are-a-ged", src:"assets/audio/28.2.mp3"},
           {word:"Pearl",irish:"Péarla",other:"pair-la", src:"assets/audio/28.3.mp3"},
-          {word:" ",irish:"",other:"shodra", src:"assets/audio/28.4.mp3"},
-          {word:"Jewellery",irish:"Seodra",other:"", src:"assets/audio/28.5.mp3"},
+          {word:"Jewellery",irish:"Seodra",other:"shodra", src:"assets/audio/28.4.mp3"},
         ]},
 
       {id:29,
@@ -462,7 +471,6 @@ export class MainPage {
           {word:"Good",irish:"Maith",other:"mah", src:"assets/audio/41.1.mp3"},
           {word:"Bad",irish:"Olc",other:"uk", src:"assets/audio/41.2.mp3"},
           {word:"Doing well",irish:"Ag déanamh go maith",other:"eg day-niv gu mah", src:"assets/audio/41.3.mp3"},
-          {word:"Nice",irish:"Deas",other:"jas", src:"assets/audio/41.4.mp3"},
         ]},
 
       {id:42,
@@ -478,16 +486,14 @@ export class MainPage {
           {word:"What time is it?",irish:"Cén t-am é?",other:"cane tomay", src:"assets/audio/43.1.mp3"},
           {word:"One o’clock",irish:"A h-Aon a chlog",other:"a hane a chlug", src:"assets/audio/43.2.mp3"},
           {word:"Two o’clock",irish:"Dó a chlog",other:"doachlug", src:"assets/audio/43.3.mp3"},
-          {word:"Three o’clock",irish:"Trí a chlog",other:"tree achlug", src:"assets/audio/43.4.mp3"},
-          {word:"Four o’clock",irish:"Ceathair a chlog",other:"ca-hara chlug", src:"assets/audio/43.5.mp3"},
         ]},
 
       {id:44,
         card:[
           {word:"Students",irish:"Mic léinn",other:"mick lane", src:"assets/audio/44.1.mp3"},
           {word:"Children",irish:"Páistí",other:"pawsh-tee", src:"assets/audio/44.2.mp3"},
-          {word:"Adults",irish:"Daoine fásta",other:"deen-ee faws-ta", src:"assets/audio/44.4.mp3"},
-          {word:"Friends",irish:"Cairde",other:"car-ja", src:"assets/audio/44.5.mp3"},
+          {word:"Adults",irish:"Daoine fásta",other:"deen-ee faws-ta", src:"assets/audio/44.3.mp3"},
+          {word:"Friends",irish:"Cairde",other:"car-ja", src:"assets/audio/44.4.mp3"},
         ]},
 
       {id:45,
@@ -495,7 +501,7 @@ export class MainPage {
           {word:"September",irish:"Meán fómhair",other:"man fo-war", src:"assets/audio/45.1.mp3"},
           {word:"October",irish:"Deireach fómhair",other:"jer-e fo-war", src:"assets/audio/45.2.mp3"},
           {word:"November",irish:"Samhain",other:"sow-an", src:"assets/audio/45.3.mp3"},
-          {word:"December",irish:"Nollag",other:"nollag", src:"assets/audio/45.6.mp3"},
+          {word:"December",irish:"Nollag",other:"nollag", src:"assets/audio/45.4.mp3"},
         ]},
 
       {id:46,
