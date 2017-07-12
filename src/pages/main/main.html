@@ -9,7 +9,7 @@
           <ion-icon name="search" *ngIf="searchKey === false"></ion-icon>
         </div>
         <div style="width: 100%;">
-        <ion-searchbar style="width:80%;margin-left: 20%;padding-top: 10px;" *ngIf="searchKey === true" backgriund-color="danger" (ionInput)="getAllItems($event)" (ionClear)="onCancel($event)" >
+        <ion-searchbar style="width:80%;margin-left: 20%;padding-top: 5px;" *ngIf="searchKey === true" backgriund-color="danger" (ionInput)="getAllItems($event)" >
         </ion-searchbar>
         <button  style="margin-top: -70px;margin-left: 12%;" ion-button icon-only  *ngIf="searchKey === true" (click)="clickForCard()">
           <ion-icon  name="md-apps"></ion-icon>
@@ -26,6 +26,8 @@
   </ion-navbar>
 </ion-header>
 
+<!--page body-->
+
 <ion-content padding>
   <ion-searchbar *ngIf="allClick != true" backgriund-color="danger" (ionInput)="getItems($event)"></ion-searchbar>
   <div *ngIf="allClick == true">
@@ -34,7 +36,7 @@
         <ion-row>
           <ion-col>
             <h2>{{card.word}}</h2>
-            <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
+            <audio-track  #audio [track]="card" >
               <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
             </audio-track>
           </ion-col>
@@ -52,12 +54,12 @@
         <ion-col>
           <h2>{{card.word}}</h2>
           <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
-            <button (click) = "playSelectedTrack(card,indexWords.card)"></button>
+            <ion-icon name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
+            <ion-icon name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
           </audio-track>
         </ion-col>
         <ion-col  text-right>
-          sdfsdfds{{indexWords.width}}
-          <img src="{{card.irish}}" style="float: right;" [width]="indexWords.width">
+          <img src="{{card.irish}}" style="float: right;" [ngStyle]="indexWords.width">
         </ion-col>
       </ion-row>
     </ion-card>

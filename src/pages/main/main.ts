@@ -28,6 +28,7 @@ export class MainPage {
   startIndex:any;
   nextIndex:any;
   endIndex:any;
+  isPlaying:boolean = false;
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,private _audioProvider: AudioProvider) {this.initializeItems();}
 
@@ -40,11 +41,13 @@ export class MainPage {
     this.endIndex = indexWords[indexWords.length-1].id
     this._audioProvider.play(card.id);
     this.nextIndex = card.id;
+    this.isPlaying =  true;
   }
 
   pauseSelectedTrack() {
     // use AudioProvider to control selected track
     this._audioProvider.pause(this.selectedTrack);
+    this.isPlaying =  false;
   }
 
   onTrackFinished(track: any) {
@@ -63,11 +66,13 @@ export class MainPage {
     this.isClicked = false;
   }
   clickForAll(){
+    this.getAllItems(null);
     this.pauseSelectedTrack();
     this.allClick = true;
     this.searchKey = false;
   }
   clickForCard(){
+    this.getItems(null);
     this.pauseSelectedTrack();
     this.allClick = false;
     this.isClicked = true;
@@ -76,7 +81,7 @@ export class MainPage {
     this.pauseSelectedTrack();
     if(this.indexCard < this.words.length){
       this.indexCard ++;
-      this.indexWords = this.words[this.indexCard].card;
+      this.indexWords = this.words[this.indexCard];
     } else {
       alert("pliz")
     }
@@ -100,7 +105,7 @@ export class MainPage {
   cardDec(){
     this.pauseSelectedTrack();
     this.indexCard --;
-    this.indexWords = this.words[this.indexCard].card;
+    this.indexWords = this.words[this.indexCard];
 
     this.setBackAndFrontIndex();
   }
@@ -126,7 +131,7 @@ export class MainPage {
           handler: data => {
             console.log('Saved clicked',data.title);
             this.indexCard = data.title;
-            this.indexWords = this.words[this.indexCard].card;
+            this.indexWords = this.words[this.indexCard];
             this.setBackAndFrontIndex();
           }
         }
@@ -140,7 +145,7 @@ export class MainPage {
     this.words =[
 
       { id: 1,
-        width:"50%'",
+        width:{'width':'50%'},
         card: [
           {word: "Hello", irish: "assets/img/1.1.png", src:"assets/audio/1.1.mp3"},
           {word: "Yes", irish:  "assets/img/1.2.png",src:"assets/audio/1.2.mp3"},
@@ -150,6 +155,7 @@ export class MainPage {
       },
 
       {id: 2,
+        width:{'width':'60%'},
         card: [
           {word: "Good day", irish: "assets/img/2.1.png", other: "la mah", src:"assets/audio/2.1.mp3"},
           {word: "Good evening", irish: "assets/img/2.2.png", other: "tra-no-na mah", src:"assets/audio/2.2.mp3"},
@@ -159,6 +165,7 @@ export class MainPage {
       },
 
       {id: 3,
+        width:{'width':'70%'},
         card: [
           {word: "How much?", irish: "assets/img/3.1.png", other: "kay vade", src:"assets/audio/3.1.mp3"},
           {word: "Please", irish:"assets/img/3.2.png", other: "leh duh hull", src:"assets/audio/3.2.mp3"},
@@ -168,6 +175,7 @@ export class MainPage {
       },
 
       {id: 4,
+        width:{'width':'70%'},
         card: [
           {word: "I like", irish: "assets/img/4.1.png", other: "is mah lum", src:"assets/audio/4.1.mp3"},
           {word: "The beach", irish: "assets/img/4.2.png", other: "an traw", src:"assets/audio/4.2.mp3"},
@@ -178,6 +186,7 @@ export class MainPage {
       },
 
       {id: 5,
+        width:{'width':'70%'},
         card: [
           {word: "I have money", irish: "assets/img/5.1.png", other: "assets/img/5.1.png", src:"assets/audio/5.1.mp3"},
           {word: "You have money", irish: "assets/img/5.2.png", other: "assets/img/5.2.png", src:"assets/audio/5.2.mp3"},
@@ -188,6 +197,7 @@ export class MainPage {
       },
 
       {id:6,
+        width:{'width':'60%'},
         card:[
           {word:"1", irish:"assets/img/6.1.png",other:"ane", src:"assets/audio/6.1.mp3"},
           {word:"2", irish:"assets/img/6.2.png",other:"do", src:"assets/audio/6.2.mp3"},
@@ -202,6 +212,7 @@ export class MainPage {
         ]},
 
       {id:7,
+        width:{'width':'60%'},
         card:[
           {word:"The shops",irish:"assets/img/7.1.png",other:"nashup-ee", src:"assets/audio/7.1.mp3"},
           {word:"The church",irish:"assets/img/7.2.png",other:"an sha-pail", src:"assets/audio/7.2.mp3"},
@@ -210,6 +221,7 @@ export class MainPage {
         ]},
 
       {id:8,
+        width:{'width':'60%'},
         card:[
           {word:"Spring",irish:"assets/img/8.1.png", src:"assets/audio/8.1.mp3"},
           {word:"Summer",irish:"assets/img/8.2.png", src:"assets/audio/8.2.mp3"},
@@ -218,6 +230,7 @@ export class MainPage {
         ]},
 
       {id:9,
+        width:{'width':'60%'},
         card:[{word:"Man",irish:"assets/img/9.1.png", src:"assets/audio/9.1.mp3"},
           {word:"Woman",irish:"assets/img/9.2.png", src:"assets/audio/9.2.mp3"},
           {word:"Girl",irish:"assets/img/9.3.png", src:"assets/audio/9.3.mp3"},
@@ -225,6 +238,7 @@ export class MainPage {
         ]},
 
       {id:10,
+        width:{'width':'60%'},
         card:[
           {word:"Where is?",irish:"assets/img/10.1.png",other:"ca wil", src:"assets/audio/10.1.mp3"},
           {word:"Where is my?",irish:"assets/img/10.2.png",other:"ca wil muh", src:"assets/audio/10.2.mp3"},
@@ -234,6 +248,7 @@ export class MainPage {
 
       {
         id: 11,
+        width:{'width':'60%'},
         card:[
           {word:"Airport",irish:"assets/img/11.1.png",other:"er-fort", src:"assets/audio/128.1.mp3"},
           {word:"Hospital ",irish:"assets/img/11.2.png",other:"us-pid-ale", src:"assets/audio/11.2.mp3"},
@@ -243,6 +258,7 @@ export class MainPage {
 
       {
         id:12,
+        width:{'width':'60%'},
         card:[
           {word:"Mother",irish:"assets/img/12.1.png",other:"maw-her", src:"assets/audio/12.1.mp3"},
           {word:"Fatherx",irish:"assets/img/12.2.png",other:"a-her", src:"assets/audio/12.2.mp3"},
@@ -251,6 +267,7 @@ export class MainPage {
         ]},
 
       {id:13,
+        width:{'width':'60%'},
         card:[
           {word:"I want",irish:"assets/img/13.1.png",other:"ba-wah lum", src:"assets/audio/13.1.mp3"},
           {word:"You want",irish:"assets/img/13.2.png",other:"ba-wah lat", src:"assets/audio/13.2.mp3"},
@@ -259,6 +276,7 @@ export class MainPage {
         ]},
 
       {id:14,
+        width:{'width':'60%'},
         card:[
           {word:"Now",irish:"assets/img/14.1.png",other:"an-ish", src:"assets/audio/14.1.mp3"},
           {word:"Here ",irish:"assets/img/14.2.png",other:"an-shuh", src:"assets/audio/14.2.mp3"},
@@ -267,6 +285,7 @@ export class MainPage {
         ]},
 
       {id:15,
+        width:{'width':'60%'},
         card:[
           {word:"What?",irish:"assets/img/15.1.png",other:"ceard", src:"assets/audio/15.1.mp3"},
           {word:"Who? ",irish:"assets/img/15.2.png",other:"cay", src:"assets/audio/15.2.mp3"},
@@ -275,6 +294,7 @@ export class MainPage {
         ]},
 
       {id:16,
+        width:{'width':'60%'},
         card:[
           {word:"You",irish:"assets/img/16.1.png",other:"Tus-a", src:"assets/audio/16.1.mp3"},
           {word:"I",irish:"assets/img/16.2.png",other:"Mish-e", src:"assets/audio/16.2.mp3"},
@@ -283,6 +303,7 @@ export class MainPage {
         ]},
 
       {id:17,
+        width:{'width':'60%'},
         card:[
           {word:"What’s your name?",irish:"assets/img/17.1.png",other:"cod is anim ditch", src:"assets/audio/17.1.mp3"},
           {word:"What is this?",irish:"assets/img/17.2.png",other:"ceard ay shuh", src:"assets/audio/17.2.mp3"},
@@ -291,6 +312,7 @@ export class MainPage {
         ]},
 
       {id:18,
+        width:{'width':'60%'},
         card:[
           {word:"Blue",irish:"assets/img/18.1.png",other:"gurom", src:"assets/audio/18.1.mp3"},
           {word:"Red",irish:"assets/img/18.2.png",other:"jearag", src:"assets/audio/18.2.mp3"},
@@ -299,6 +321,7 @@ export class MainPage {
         ]},
 
       {id:19,
+        width:{'width':'60%'},
         card:[
           {word:"Yellow",irish:"assets/img/19.1.png",other:"bwee", src:"assets/audio/19.1.mp3"},
           {word:"Orange",irish:"assets/img/19.2.png",other:"or-awshta", src:"assets/audio/19.2.mp3"},
@@ -307,6 +330,7 @@ export class MainPage {
         ]},
 
       {id:20,
+        width:{'width':'60%'},
         card:[
           {word:"My name is AnneÁine is ainm dom", irish: "assets/img/20.1.png",other:"awe-nyaisanim dum", src:"assets/audio/20.1.mp3"},
           {word:"And you?",irish:"assets/img/20.2.png",other:"ag-us tu-sa", src:"assets/audio/20.2.mp3"},
@@ -315,6 +339,7 @@ export class MainPage {
         ]},
 
       {id:21,
+        width:{'width':'60%'},
         card:[
           {word:"Open",irish:"assets/img/21.1.png",other:"us-cal-che", src:"assets/audio/21.1.mp3"},
           {word:"Closed",irish:"assets/img/21.2.png",other:"doon-ta", src:"assets/audio/21.2.mp3"},
@@ -323,6 +348,7 @@ export class MainPage {
         ]},
 
       {id:22,
+        width:{'width':'60%'},
         card:[
           {word:"Chocolate",irish:"assets/img/22.1.png",other:"shoc-lawdge", src:"assets/audio/22.1.mp3"},
           {word:"Salad",irish:"assets/img/22.2.png",other:"sal-ade", src:"assets/audio/22.2.mp3"},
@@ -331,6 +357,7 @@ export class MainPage {
         ]},
 
       {id: 23,
+        width:{'width':'60%'},
         card:[
           {word:"Mondya",irish:"assets/img/23.1.png",other:"jay loon", src:"assets/audio/23.1.mp3"},
           {word:"Tuseday",irish:"assets/img/23.2.png",other:"jay mort", src:"assets/audio/23.2.mp3"},
@@ -343,6 +370,7 @@ export class MainPage {
         ]},
 
       {id:24,
+        width:{'width':'70%'},
         card:[
           {word:"Where is the bank?",irish:"assets/img/24.1.png",other:"cawil an bank", src:"assets/audio/24.1.mp3"},
           {word:"Where is the beach?",irish:"assets/img/24.2.png",other:"cawil antraw", src:"assets/audio/24.2.mp3"},
@@ -351,6 +379,7 @@ export class MainPage {
         ]},
 
       {id:25,
+        width:{'width':'60%'},
         card:[
           {word:"Grapes",irish:"assets/img/25.1.png",other:"feen-cwera", src:"assets/audio/25.1.mp3"},
           {word:"Banana",irish:"assets/img/25.2.png",other:"ba-na-na", src:"assets/audio/25.2.mp3"},
@@ -359,6 +388,7 @@ export class MainPage {
         ]},
 
       {id:26,
+        width:{'width':'60%'},
         card:[
           {word:"Water",irish:"assets/img/26.1.png",other:"ish-ca", src:"assets/audio/26.1.mp3"},
           {word:"Coffee",irish:"assets/img/26.2.png",other:"ca-fay", src:"assets/audio/26.2.mp3"},
@@ -367,6 +397,7 @@ export class MainPage {
         ]},
 
       {id:27,
+        width:{'width':'60%'},
         card:[
           {word:"Fish",irish:"assets/img/27.1.png",other:"e-ask", src:"assets/audio/27.1.mp3"},
           {word:"Chicken",irish:"assets/img/27.2.png",other:"shi-keen", src:"assets/audio/27.2.mp3"},
@@ -375,6 +406,7 @@ export class MainPage {
         ]},
 
       {id:28,
+        width:{'width':'60%'},
         card:[
           {word:"Gold",irish:"assets/img/28.1.png",other:"or", src:"assets/audio/28.1.mp3"},
           {word:"Silver",irish:"assets/img/28.2.png",other:"are-a-ged", src:"assets/audio/28.2.mp3"},
@@ -384,6 +416,7 @@ export class MainPage {
         ]},
 
       {id:29,
+        width:{'width':'60%'},
         card:[
           {word:"Dancing",irish:"assets/img/29.1.png",other:"eg dow-sa", src:"assets/audio/29.1.mp3"},
           {word:"Talking",irish:"assets/img/29.2.png",other:"eg cinch", src:"assets/audio/29.2.mp3"},
@@ -392,6 +425,7 @@ export class MainPage {
         ]},
 
       {id:30,
+        width:{'width':'60%'},
         card:[
           {word:"Bus",irish:"assets/img/30.1.png.png",other:"bus", src:"assets/audio/30.1.mp3"},
           {word:"Taxi",irish:"assets/img/30.2.png.png",other:"tax-ee", src:"assets/audio/30.2.mp3"},
@@ -400,6 +434,7 @@ export class MainPage {
         ]},
 
       {id:31,
+        width:{'width':'60%'},
         card:[
           {word:"Bread",irish:"assets/img/31.1.png",other:"ar-awn", src:"assets/audio/31.1.mp3"},
           {word:"Butter",irish:"assets/img/31.2.png",other:"im", src:"assets/audio/31.2.mp3"},
@@ -408,6 +443,7 @@ export class MainPage {
         ]},
 
       {id:32,
+        width:{'width':'60%'},
         card:[
           {word:"A book",irish:"assets/img/32.1.png",other:"lawar", src:"assets/audio/32.1.mp3"},
           {word:"A family",irish:"assets/img/32.2.png",other:"chy-loch", src:"assets/audio/32.2.mp3"},
@@ -416,6 +452,7 @@ export class MainPage {
         ]},
 
       {id:33,
+        width:{'width':'60%'},
         card:[
           {word:"Cat",irish:"assets/img/33.1.png",other:"cat", src:"assets/audio/33.1.mp3"},
           {word:"Dog",irish:"assets/img/33.2.png",other:"mad-ra", src:"assets/audio/33.2.mp3"},
@@ -424,6 +461,7 @@ export class MainPage {
         ]},
 
       {id:34,
+        width:{'width':'60%'},
         card:[
           {word:"Flowers",irish:"assets/img/34.1.png",other:"bla-ha-na", src:"assets/audio/34.1.mp3"},
           {word:"Telephone",irish:"assets/img/34.2.png",other:"tel-e-fown", src:"assets/audio/34.2.mp3"},
@@ -432,6 +470,7 @@ export class MainPage {
         ]},
 
       {id:35,
+        width:{'width':'60%'},
         card:[
           {word:"Waiting",irish:"assets/img/35.1.png",other:"eg fan-ucht", src:"assets/audio/35.1.mp3"},
           {word:"Thinking",irish:"assets/img/35.2.png",other:"eg smwee-nuv", src:"assets/audio/35.2.mp3"},
@@ -440,6 +479,7 @@ export class MainPage {
         ]},
 
       {id:36,
+        width:{'width':'60%'},
         card:[
           {word:"Cup",irish:"assets/img/36.1.png",other:"cupawn", src:"assets/audio/36.1.mp3"},
           {word:"Glass",irish:"assets/img/36.2.png",other:"glinn-a", src:"assets/audio/36.2.mp3"},
@@ -448,6 +488,7 @@ export class MainPage {
         ]},
 
       {id:37,
+        width:{'width':'60%'},
         card:[
           {word:"Bed",irish:"assets/img/37.1.png",other:"la-ba", src:"assets/audio/37.1.mp3"},
           {word:"Bath",irish:"assets/img/37.2.png",other:"ful-ca-dawn", src:"assets/audio/37.2.mp3"},
@@ -456,6 +497,7 @@ export class MainPage {
         ]},
 
       {id:38,
+        width:{'width':'60%'},
         card:[
           {word:"Street",irish:"assets/img/38.1.png",other:"shawd", src:"assets/audio/38.1.mp3"},
           {word:"City",irish:"assets/img/38.2.png",other:"car-har", src:"assets/audio/38.2.mp3"},
@@ -464,6 +506,7 @@ export class MainPage {
         ]},
 
       {id:39,
+        width:{'width':'60%'},
         card:[
           {word:"January",irish:"assets/img/39.1.png",other:"an-ar", src:"assets/audio/39.1.mp3"},
           {word:"February",irish:"assets/img/39.2.png",other:"feeow-ra", src:"assets/audio/39.2.mp3"},
@@ -472,6 +515,7 @@ export class MainPage {
         ]},
 
       {id:40,
+        width:{'width':'60%'},
         card:[
           {word:"Hot",irish:"assets/img/40.1.png",other:"te", src:"assets/audio/40.1.mp3"},
           {word:"Cold",irish:"assets/img/40.2.png",other:"foo-ar", src:"assets/audio/40.2.mp3"},
@@ -480,6 +524,7 @@ export class MainPage {
         ]},
 
       {id:41,
+        width:{'width':'60%'},
         card:[
           {word:"Good",irish:"assets/img/41.1.png",other:"mah", src:"assets/audio/41.1.mp3"},
           {word:"Bad",irish:"assets/img/41.2.png",other:"uk", src:"assets/audio/41.2.mp3"},
@@ -488,6 +533,7 @@ export class MainPage {
         ]},
 
       {id:42,
+        width:{'width':'60%'},
         card:[
           {word:"May",irish:"assets/img/42.1.png",other:"be-al-tan-a", src:"assets/audio/42.1.mp3"},
           {word:"June",irish:"assets/img/42.2.png",other:"meh-iv", src:"assets/audio/42.2.mp3"},
@@ -496,6 +542,7 @@ export class MainPage {
         ]},
 
       {id:43,
+        width:{'width':'60%'},
         card:[
           {word:"What time is it?",irish:"assets/img/43.1.png",other:"cane tomay", src:"assets/audio/43.1.mp3"},
           {word:"One o’clock",irish:"assets/img/43.2.png",other:"a hane a chlug", src:"assets/audio/43.2.mp3"},
@@ -505,6 +552,7 @@ export class MainPage {
         ]},
 
       {id:44,
+        width:{'width':'60%'},
         card:[
           {word:"Students",irish:"assets/img/44.1.png",other:"mick lane", src:"assets/audio/44.1.mp3"},
           {word:"Children",irish:"assets/img/44.2.png",other:"pawsh-tee", src:"assets/audio/44.2.mp3"},
@@ -513,6 +561,7 @@ export class MainPage {
         ]},
 
       {id:45,
+        width:{'width':'60%'},
         card:[
           {word:"September",irish:"assets/img/45.1.png",other:"man fo-war", src:"assets/audio/45.1.mp3"},
           {word:"October",irish:"assets/img/45.2.png",other:"jer-e fo-war", src:"assets/audio/45.2.mp3"},
@@ -521,6 +570,7 @@ export class MainPage {
         ]},
 
       {id:46,
+        width:{'width':'60%'},
         card:[
           {word:"Until tomorrow",irish:"assets/img/46.1.png",other:"gu geeamar-ach", src:"assets/audio/46.1.mp3"},
           {word:"Until later",irish:"assets/img/46.2.png",other:"nees mwill-ya", src:"assets/audio/46.2.mp3"},
@@ -529,6 +579,7 @@ export class MainPage {
         ]},
 
       {id:47,
+        width:{'width':'60%'},
         card:[
           {word:"Doctor",irish:"assets/img/47.1.png",other:"duch-toor", src:"assets/audio/47.1.mp3"},
           {word:"Allergy",irish:"assets/img/47.2.png",other:"al-er-guh", src:"assets/audio/47.2.mp3"},
@@ -537,6 +588,7 @@ export class MainPage {
         ]},
 
       {id:48,
+        width:{'width':'60%'},
         card:[
           {word:"France",irish:"assets/img/48.1.png",other:"", src:"assets/audio/48.1.mp3"},
           {word:"Ireland",irish:"assets/img/48.2.png",other:"air-ra", src:"assets/audio/48.2.mp3"},
@@ -552,14 +604,18 @@ export class MainPage {
     this.initializeItems();
 
     // set val to the value of the ev target
-    let val = ev.target.value;
+    let val = ev?ev.target.value:'';
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.indexWords = this.words[this.indexCard].card;
-      this.indexWords = this.indexWords.filter((cords) => {
+      let indexWords1 = this.words[this.indexCard];
+
+      indexWords1.card = indexWords1.card.filter((cords) => {
             return (cords.word.toString().toLowerCase().indexOf(val.toLowerCase())> -1);
       })
+      this.indexWords = indexWords1;
+    } else {
+      this.indexWords = this.words[this.indexCard];
     }
   };
 
@@ -568,7 +624,7 @@ export class MainPage {
     this.initializeItems();
 
     // set val to the value of the ev target
-    let val = ev.target.value;
+    let val = ev?ev.target.value:'';
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
