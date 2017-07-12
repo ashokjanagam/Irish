@@ -250,7 +250,7 @@ export class MainPage {
         id: 11,
         width:{'width':'60%'},
         card:[
-          {word:"Airport",irish:"assets/img/11.1.png",other:"er-fort", src:"assets/audio/128.1.mp3"},
+          {word:"Airport",irish:"assets/img/11.1.png",other:"er-fort", src:"assets/audio/11.1.mp3"},
           {word:"Hospital ",irish:"assets/img/11.2.png",other:"us-pid-ale", src:"assets/audio/11.2.mp3"},
           {word:"Toilets",irish:"assets/img/11.3.png",other:"leh-rus", src:"assets/audio/11.3.mp3"},
           {word:" Door",irish:"assets/img/11.4.png",other:"dur-as",src:"assets/audio/11.4.mp3"}
@@ -261,7 +261,7 @@ export class MainPage {
         width:{'width':'60%'},
         card:[
           {word:"Mother",irish:"assets/img/12.1.png",other:"maw-her", src:"assets/audio/12.1.mp3"},
-          {word:"Fatherx",irish:"assets/img/12.2.png",other:"a-her", src:"assets/audio/12.2.mp3"},
+          {word:"Father",irish:"assets/img/12.2.png",other:"a-her", src:"assets/audio/12.2.mp3"},
           {word:" Brother ",irish:"assets/img/12.3.png",other:"jer-har", src:"assets/audio/12.3.mp3"},
           {word:"Sister",irish:"assets/img/12.4.png",other:"jer-foor", src:"assets/audio/12.4.mp3"},
         ]},
@@ -332,7 +332,7 @@ export class MainPage {
       {id:20,
         width:{'width':'60%'},
         card:[
-          {word:"My name is AnneÁine is ainm dom", irish: "assets/img/20.1.png",other:"awe-nyaisanim dum", src:"assets/audio/20.1.mp3"},
+          {word:"My name is Anne", irish: "assets/img/20.1.png",other:"awe-nyaisanim dum", src:"assets/audio/20.1.mp3"},
           {word:"And you?",irish:"assets/img/20.2.png",other:"ag-us tu-sa", src:"assets/audio/20.2.mp3"},
           {word:"I am from Galway",irish:"assets/img/20.3.png",other:"isasgall-yiv may", src:"assets/audio/20.3.mp3"},
           {word:"From where?",irish:"assets/img/20.4.png",other:"as cane ait", src:"assets/audio/20.4.mp3"},
@@ -384,7 +384,7 @@ export class MainPage {
           {word:"Grapes",irish:"assets/img/25.1.png",other:"feen-cwera", src:"assets/audio/25.1.mp3"},
           {word:"Banana",irish:"assets/img/25.2.png",other:"ba-na-na", src:"assets/audio/25.2.mp3"},
           {word:"Strawberries",irish:"assets/img/25.3.png",other:"soo ta-loon", src:"assets/audio/25.3.mp3"},
-          {word:"Pear",irish:"Piorra",other:"assets/img/25.4.png", src:"assets/audio/25.4.mp3"},
+          {word:"Pear",irish:"assets/img/25.4.png",other:"Piorra", src:"assets/audio/25.4.mp3"},
         ]},
 
       {id:26,
@@ -411,8 +411,7 @@ export class MainPage {
           {word:"Gold",irish:"assets/img/28.1.png",other:"or", src:"assets/audio/28.1.mp3"},
           {word:"Silver",irish:"assets/img/28.2.png",other:"are-a-ged", src:"assets/audio/28.2.mp3"},
           {word:"Pearl",irish:"assets/img/28.3.png",other:"pair-la", src:"assets/audio/28.3.mp3"},
-          {word:" ",irish:"",other:"assets/img/28.4.png", src:"assets/audio/28.4.mp3"},
-          {word:"Jewellery",irish:"assets/img/28.5.png",other:"", src:"assets/audio/28.5.mp3"},
+          {word:"Jewellery ",irish:"assets/img/28.4.png",other:"", src:"assets/audio/28.4.mp3"},
         ]},
 
       {id:29,
@@ -427,8 +426,8 @@ export class MainPage {
       {id:30,
         width:{'width':'60%'},
         card:[
-          {word:"Bus",irish:"assets/img/30.1.png.png",other:"bus", src:"assets/audio/30.1.mp3"},
-          {word:"Taxi",irish:"assets/img/30.2.png.png",other:"tax-ee", src:"assets/audio/30.2.mp3"},
+          {word:"Bus",irish:"assets/img/30.1.png",other:"bus", src:"assets/audio/30.1.mp3"},
+          {word:"Taxi",irish:"assets/img/30.2.png",other:"tax-ee", src:"assets/audio/30.2.mp3"},
           {word:"Bicycle",irish:"assets/img/30.3.png",other:"ro-har", src:"assets/audio/30.3.mp3"},
           {word:"Train",irish:"assets/img/30.4.png",other:"train", src:"assets/audio/30.4.mp3"},
         ]},
@@ -529,7 +528,6 @@ export class MainPage {
           {word:"Good",irish:"assets/img/41.1.png",other:"mah", src:"assets/audio/41.1.mp3"},
           {word:"Bad",irish:"assets/img/41.2.png",other:"uk", src:"assets/audio/41.2.mp3"},
           {word:"Doing well",irish:"assets/img/41.3.png",other:"eg day-niv gu mah", src:"assets/audio/41.3.mp3"},
-          {word:"Nice",irish:"Deas.png",other:"assets/img/41.4", src:"assets/audio/41.4.mp3"},
         ]},
 
       {id:42,
