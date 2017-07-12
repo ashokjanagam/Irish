@@ -129,10 +129,12 @@ export class MainPage {
         {
           text: 'Ok',
           handler: data => {
-            console.log('Saved clicked',data.title);
-            this.indexCard = data.title;
-            this.indexWords = this.words[this.indexCard];
-            this.setBackAndFrontIndex();
+            if (data.title < 48 && data.title != "") {
+              console.log('Saved clicked', data.title);
+              this.indexCard = data.title;
+              this.indexWords = this.words[this.indexCard];
+              this.setBackAndFrontIndex();
+            }
           }
         }
       ]
