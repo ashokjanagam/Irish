@@ -36,14 +36,14 @@
         <ion-row>
           <ion-col>
             <h2>{{card.word}}</h2>
+            <img src="{{ukFlag}}" style="float: right;width:30%;  margin-right: 15%">
             <audio-track  #audio [track]="card" >
               <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
             </audio-track>
-            <img src="{{irlFlag}}" style="float: right;width:30%">
-            <img src="{{ukFlag}}" style="float: right;width:30%">
           </ion-col>
-          <ion-col ion-text color="danger" text-right>
-          <img src="{{card.irish}}" alt=" image teast">
+            <img src="{{irlFlag}}" style="height: 62%;margin-top: 16px;width:3%">
+          <ion-col ion-text color="danger" text-right style="display: inherit">
+            <img src="{{card.irish}}" alt=" image teast">
           </ion-col>
         </ion-row>
       </ion-card>
@@ -54,16 +54,16 @@
       <ion-row>
 
         <ion-col>
+          <img src="{{ukFlag}}" style="float: right;width:30%">
           <h2>{{card.word}}</h2>
           <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
             <ion-icon name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
             <ion-icon name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
           </audio-track>
-          <img src="{{irlFlag}}" style="float: right;width:30%">
-          <img src="{{ukFlag}}" style="float: right;width:30%">
         </ion-col>
         <ion-col  text-right>
           <img src="{{card.irish}}" style="float: right;" [ngStyle]="indexWords.width">
+          <img src="{{irlFlag}}" style="float: right;width:30%">
         </ion-col>
       </ion-row>
     </ion-card>
