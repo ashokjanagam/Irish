@@ -29,6 +29,8 @@ export class MainPage {
   nextIndex:any;
   endIndex:any;
   isPlaying:boolean = false;
+  irlFlag: string = "assets/flags/irl.jpg";
+  ukFlag: string = "assets/flags/Uk.jpg";
 
   constructor(public navCtrl:NavController,public alertCtrl: AlertController,private _audioProvider: AudioProvider) {this.initializeItems();}
 
