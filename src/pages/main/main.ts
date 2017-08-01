@@ -111,6 +111,17 @@ export class MainPage {
 
     this.setBackAndFrontIndex();
   }
+
+  stopSelectedTrack(card, indexWords){
+    for(var i=0; i<=card.id; i++) {
+      //this._audioProvider.play(i);
+      this.startIndex = indexWords[0].id;
+      this.endIndex = indexWords[indexWords.length-1].id
+      this._audioProvider.play(i);
+      this.nextIndex = i;
+      console.log(card.id);
+    }
+  }
   doPrompt() {
     this.pauseSelectedTrack();
     let prompt = this.alertCtrl.create({
