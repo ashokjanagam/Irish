@@ -36,7 +36,6 @@
         <ion-row>
           <ion-col>
             <h2>{{card.word}}</h2><ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
-            <img src="{{ukFlag}}" style="float: right;width:30%;  margin-right: 15%">
             <audio-track  #audio [track]="card" >
               <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
             </audio-track>
@@ -52,10 +51,8 @@
   <div *ngIf="allClick != true">
     <ion-card *ngFor="let card of indexWords.card" style="margin-bottom: 30px;min-height:70px">
       <ion-row>
-
         <ion-col>
-          <img src="{{ukFlag}}" style="float: right;width:30%">
-          <h2>{{card.word}}</h2>
+          <h2>{{card.word}}<super>{{indexCard}}</super></h2>
           <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
             <ion-icon class="button-card-icon" name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
             <ion-icon class="button-card-icon" name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
