@@ -23,6 +23,8 @@ export class MainPage {
   isBackIndex:boolean = false;
   isFrontIndex:boolean = true;
   isClicked: boolean = false;
+  isCardSelected:String = "No";
+  isStopped: boolean = false
   allTracks: any[];
   selectedTrack = 0;
   startIndex:any;
@@ -38,7 +40,9 @@ export class MainPage {
     // get all tracks managed by AudioProvider so we can control playback via the API
     this.allTracks = this._audioProvider.tracks;
   }
+
   playSelectedTrack(card,indexWords) {
+  this.isStopped =  false;
     this.startIndex = indexWords[0].id;
     this.endIndex = indexWords[indexWords.length-1].id
     this._audioProvider.play(card.id);
@@ -52,14 +56,40 @@ export class MainPage {
     this.isPlaying =  false;
   }
 
-  onTrackFinished(track: any) {
+ playSelectedTrackAll(card,indexWords) {
+  this.isStopped =  false;
+    this.startIndex = indexWords[0].id;
+    this.endIndex = indexWords[indexWords.length-1].id
+    this.isCardSelected = card.word;
+    this._audioProvider.play(card.id);
+    this.nextIndex = card.id;
+    this.isPlaying =  true;
+  }
+
+  pauseSelectedTrackAll() {
+    // use AudioProvider to control selected track
+    this._audioProvider.pause(this.selectedTrack);
+    this.isPlaying =  false;
+  }
+
+
+  stopSelectedTrackAll(card, indexWords){
+    this.isPlaying =  false;
+    this.isStopped =  true;
+    this._audioProvider.stop();
+  }
+
+  onTrackFinished() {
     if(this.nextIndex == this.endIndex) {
     this.nextIndex = this.startIndex;
     } else {
     this.nextIndex++;
     }
     this.selectedTrack = this.nextIndex;
+    if (!this.isStopped) {
     this._audioProvider.play(this.nextIndex);
+    }
+
   }
 
   clickForSearch(){
@@ -113,14 +143,9 @@ export class MainPage {
   }
 
   stopSelectedTrack(card, indexWords){
-    for(var i=0; i<=card.id; i++) {
-      //this._audioProvider.play(i);
-      this.startIndex = indexWords[0].id;
-      this.endIndex = indexWords[indexWords.length-1].id
-      this._audioProvider.play(i);
-      this.nextIndex = i;
-      console.log(card.id);
-    }
+    this.isPlaying =  false;
+    this.isStopped =  true;
+    this._audioProvider.stop();
   }
   doPrompt() {
     this.pauseSelectedTrack();
