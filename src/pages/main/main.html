@@ -38,10 +38,15 @@
             <h2>{{card.word}}</h2>
             <audio-track  #audio [track]="card" >
               <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
+
+              <!--<ion-icon class="button-card-icon" name="play" (click) = "playSelectedTrackAll(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
+              <ion-icon class="button-card-icon" name="pause" (click) = "pauseSelectedTrackAll()" [hidden]="!isPlaying && isCardSelected === card.word"></ion-icon>
+              <ion-icon class="button-card-icon"   name="square" (click) = "stopSelectedTrackAll(card, indexWords.card)" [hidden]="!isPlaying && !isCardSelected == card.word"></ion-icon>-->
             </audio-track>
           </ion-col>
-          <ion-col ion-text color="danger" text-right>
-          <img src="{{card.irish}}" alt=" image teast">
+            <img src="{{irlFlag}}" style="height: 62%;margin-top: 16px;width:20%">
+          <ion-col ion-text color="danger" text-right style="display: inherit">
+            <img src="{{card.irish}}" alt=" image teast">
           </ion-col>
         </ion-row>
       </ion-card>
@@ -50,16 +55,17 @@
   <div *ngIf="allClick != true">
     <ion-card *ngFor="let card of indexWords.card" style="margin-bottom: 30px;min-height:70px">
       <ion-row>
-
         <ion-col>
           <h2>{{card.word}}</h2>
           <audio-track  #audio [track]="card" (onFinish)="onTrackFinished($event)">
-            <ion-icon name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
-            <ion-icon name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
+            <ion-icon class="button-card-icon" name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
+            <ion-icon class="button-card-icon" name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
+            <ion-icon class="button-card-icon"   name="square" (click) = "stopSelectedTrack(card, indexWords.card)" [hidden]="!isPlaying"></ion-icon>
           </audio-track>
         </ion-col>
         <ion-col  text-right>
           <img src="{{card.irish}}" style="float: right;" [ngStyle]="indexWords.width">
+          <img src="{{irlFlag}}" style="float: right;width:30%">
         </ion-col>
       </ion-row>
     </ion-card>
