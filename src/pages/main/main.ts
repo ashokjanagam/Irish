@@ -51,7 +51,7 @@ export class MainPage {
   }
 
   pauseSelectedTrack() {
-    // use AudioProvider to control selected track
+    this.selectedTrack = this.nextIndex;
     this._audioProvider.pause(this.selectedTrack);
     this.isPlaying =  false;
   }
@@ -114,8 +114,6 @@ export class MainPage {
     if(this.indexCard < this.words.length){
       this.indexCard ++;
       this.indexWords = this.words[this.indexCard];
-    } else {
-      alert("pliz")
     }
     this.setBackAndFrontIndex();
   }
