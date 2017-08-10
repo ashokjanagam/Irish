@@ -77,7 +77,7 @@
       <button ion-button large icon-only (click)="cardDec()" [disabled]="!isBackIndex">
         <ion-icon  name="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
       </button>
-     <button style="margin-left:25%;color:red">{{indexCard}}</button>
+     <button style="margin-left:25%;color:red">{{indexCard+1}}</button>
       <button ion-button color="light" outline (click)="doPrompt(cardNum)" style="margin-left:7%">Jump TO</button>
       <button ion-button large icon-only  style="float: right" large (click)="cardIncr()" [disabled]="!isFrontIndex">
         <ion-icon  name="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>

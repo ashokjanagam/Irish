@@ -97,6 +97,7 @@ export class MainPage {
     this.searchKey = true;
     this.isClicked = false;
   }
+
   clickForAll(){
     this.getAllItems(null);
     this.pauseSelectedTrack();
@@ -119,18 +120,18 @@ export class MainPage {
   }
 
   private setBackAndFrontIndex() {
-  this.pauseSelectedTrack();
-    if (this.indexCard > 0) {
-      this.isBackIndex = true;
-    } else {
-      this.isBackIndex = false;
-    }
+    this.pauseSelectedTrack();
+      if (this.indexCard > 0) {
+        this.isBackIndex = true;
+      } else {
+        this.isBackIndex = false;
+      }
 
-    if (this.indexCard < 50) {
-      this.isFrontIndex = true;
-    } else {
-      this.isFrontIndex = false;
-    }
+      if (this.indexCard < 51) {
+        this.isFrontIndex = true;
+      } else {
+        this.isFrontIndex = false;
+      }
   }
   cardDec(){
     this.pauseSelectedTrack();
@@ -152,7 +153,7 @@ export class MainPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Card Number(0-50)'
+          placeholder: 'Card Number(1-51)'
         },
       ],
       buttons: [
@@ -165,11 +166,12 @@ export class MainPage {
         {
           text: 'Ok',
           handler: data => {
-            if (data.title < 51 && data.title != "") {
+            if (data.title < 52 && data.title != "" && data.title > 0) {
               console.log('Saved clicked', data.title);
               this.indexCard = data.title;
-              this.indexWords = this.words[this.indexCard];
+              this.indexWords = this.words[this.indexCard-1];
               this.setBackAndFrontIndex();
+              this.indexCard--;
             }
           }
         }
