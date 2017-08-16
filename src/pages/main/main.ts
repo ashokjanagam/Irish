@@ -127,7 +127,7 @@ export class MainPage {
         this.isBackIndex = false;
       }
 
-      if (this.indexCard < 51) {
+      if (this.indexCard < 50) {
         this.isFrontIndex = true;
       } else {
         this.isFrontIndex = false;
@@ -170,8 +170,8 @@ export class MainPage {
               console.log('Saved clicked', data.title);
               this.indexCard = data.title;
               this.indexWords = this.words[this.indexCard-1];
-              this.setBackAndFrontIndex();
               this.indexCard--;
+              this.setBackAndFrontIndex();
             }
           }
         }
