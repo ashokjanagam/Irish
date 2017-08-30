@@ -21,14 +21,32 @@
       </div>
     </ion-buttons>
     <ion-title *ngIf="searchKey === false || isClicked === true">
-      Irish Calling
+      SimplyHowe Irish
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <!--page body-->
 
+
+
 <ion-content padding>
+
+  <ion-card *ngIf="allClick != true" style="width:100%;margin-left:0px;margin-top:0px">
+    <ion-toolbar color="danger">
+      <ion-buttons>
+        <button ion-button large icon-only (click)="cardDec()" [disabled]="!isBackIndex">
+          <ion-icon  name="ios-arrow-dropleft" md="md-arrow-dropleft"></ion-icon>
+        </button>
+        <button style="margin-left:10%;color:red">{{indexCard+1}}</button>
+        <button ion-button color="light" outline (click)="doPrompt(cardNum)" style="margin-left:7%">Jump TO</button>
+        <button ion-button large icon-only  style="float: right" large (click)="cardIncr()" [disabled]="!isFrontIndex">
+          <ion-icon  name="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card>
+
   <ion-searchbar *ngIf="allClick != true" backgriund-color="danger" (ionInput)="getItems($event)"></ion-searchbar>
   <div *ngIf="allClick == true">
     <ion-list *ngFor="let word of words">
@@ -65,13 +83,12 @@
       </ion-row>
     </ion-card>
 
-    <ion-card *ngFor="let card of indexWords.card; let i = index" style="margin-bottom: 30px;min-height:25px;" [hidden]="i>0">
+    <ion-card *ngFor="let card of indexWords.card; let i = index" style="margin-left:35%;width:25%;min-height:25px;" [hidden]="i>0">
       <ion-row>
-
-          <audio-track  #audio [track]="card"   (onFinish)="onTrackFinished($event)">
+          <audio-track  #audio [track]="card"   (onFinish)="onTrackFinished($event)" style="padding-top:4px">
             <ion-col *ngIf = "i === 0">
-            <ion-icon class="button-card-icon" name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
-            <ion-icon class="button-card-icon" name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
+            <ion-icon class="button-card-icon" style="padding-left:30px" name="play" (click) = "playSelectedTrack(card,indexWords.card)" [hidden]="isPlaying"></ion-icon>
+            <ion-icon class="button-card-icon" style="padding-left:10px" name="pause" (click) = "pauseSelectedTrack()" [hidden]="!isPlaying"></ion-icon>
             <ion-icon class="button-card-icon"   name="square" (click) = "stopSelectedTrack(card, indexWords.card)" [hidden]="!isPlaying"></ion-icon>
             </ion-col>
           </audio-track>
@@ -81,6 +98,7 @@
 
   </div>
 </ion-content>
+<!--
 <ion-footer *ngIf="allClick != true">
   <ion-toolbar color="danger">
     <ion-buttons>
@@ -95,3 +113,4 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+-->
